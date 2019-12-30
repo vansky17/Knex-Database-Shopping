@@ -1,8 +1,11 @@
+require('dotenv').config()
+const ShoppingListService = require('./shopping-list-service')
+
 const knex = require('knex')
 const knexInstance = knex({
   client: 'pg',
   /* connection: process.env.DB_URL */
-  connection: 'postgresql://dunder_muffin@localhost/knex-practice'
+  connection: 'postgresql://dunder_muffin@localhost/knex-practice' 
 })
 //1. Get the number of entries
 /* knexInstance.from('shopping_list').count('*')
@@ -63,4 +66,21 @@ function totalCategoryCosts() {
           console.log(result)
       })
 }
-totalCategoryCosts();
+/* totalCategoryCosts(); */
+
+/* ShoppingListService.getAllItems(knexInstance); */
+ShoppingListService.countAllItems(knexInstance);
+
+/* ShoppingListService.updateItem(knexInstance, 1, {
+  product_name: 'DIngs',
+  price: 17.00
+}); */
+ShoppingListService.getById(knexInstance, 1); 
+/* ShoppingListService.insertItem(knexInstance, {
+  product_name: 'NEW',
+  price: '17.10',
+  date_added: new Date(),
+  checked: false,
+  category: 'Main',
+});  */
+/* ShoppingListService.deleteItem(knexInstance, 19); */
